@@ -21,6 +21,7 @@
       outlined
       type="password"
       label="Password"
+      autocomplete="off"
     />
     <div class="row">
       <q-btn class="full-width" type="submit" color="primary" :label="tab" />
@@ -30,6 +31,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "login-register",
@@ -44,9 +46,14 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions("globalState", ["register", "login"]),
     submitForm() {
-        alert()
+      if (this.tab == "login") {
+        this.login(this.formData);
+      } else {
+        this.register(this.formData);
+      }
     }
-  }
+  },
 });
 </script>

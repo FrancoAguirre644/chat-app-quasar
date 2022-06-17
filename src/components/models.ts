@@ -1,8 +1,11 @@
-export interface Todo {
-  id: number;
-  content: string;
+export interface IUserDetails {
+  userId?: string;
+  name?: string;
+  email?: string;
 }
 
-export interface Meta {
-  totalCount: number;
+export interface IUser {
+  [key: string]: string | IUserDetails | undefined;
+  userId: string;
+  userDetails?: IUserDetails;
 }

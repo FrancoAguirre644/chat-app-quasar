@@ -2,23 +2,33 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn 
+        <q-btn
           v-if="$route.fullPath.includes('/chat')"
-          icon="arrow_back" 
+          icon="arrow_back"
           to="/"
-          flat 
-          rounded 
-          label="Back" 
+          flat
+          rounded
+          label="Back"
         />
 
         <q-toolbar-title class="absolute-center"> Chat App </q-toolbar-title>
-      
-        <q-btn 
+
+        <q-btn
+          v-if="!userDetails.userId"
           class="absolute-right"
-          icon="account_circle" 
+          icon="account_circle"
           to="/auth"
-          flat 
-          rounded 
+          flat
+          rounded
+        />
+        <q-btn
+          v-else
+          @click="logout"
+          class="absolute-right"
+          icon="logout"
+          flat
+          rounded
+          :label="userDetails.name"
         />
       </q-toolbar>
     </q-header>
@@ -31,7 +41,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
+import { mapActions, mapState } from "vuex";
 
 const linksList = [
   {
@@ -80,11 +90,6 @@ const linksList = [
 
 export default defineComponent({
   name: "MainLayout",
-
-  components: {
-    EssentialLink,
-  },
-
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -96,5 +101,11 @@ export default defineComponent({
       },
     };
   },
+  computed: {
+    ...mapState("globalState", ["userDetails"]),
+  },
+  methods: {
+    ...mapActions("globalState", ["logout"]),
+  }
 });
 </script>

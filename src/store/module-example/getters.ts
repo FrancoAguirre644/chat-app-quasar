@@ -3,8 +3,8 @@ import { StateInterface } from '../index';
 import { ExampleStateInterface } from './state';
 
 const getters: GetterTree<ExampleStateInterface, StateInterface> = {
-  someAction (/* context */) {
-    // your code
+  users: state => {
+    return state.users;
   }
 };
 

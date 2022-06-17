@@ -1,10 +1,16 @@
+import { IUser, IUserDetails } from "src/components/models";
+
 export interface ExampleStateInterface {
-  prop: boolean;
+  userDetails: IUserDetails;
+  users: IUser;
 }
 
 function state(): ExampleStateInterface {
   return {
-    prop: false
+    userDetails: {},
+    users: {
+      userId: '1'
+    }
   }
 }
 
