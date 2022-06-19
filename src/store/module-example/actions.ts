@@ -2,7 +2,7 @@ import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { ExampleStateInterface } from './state';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { get, onChildAdded, ref, set } from 'firebase/database';
+import { get, onChildAdded, onChildChanged, ref, set, update } from 'firebase/database';
 import { auth, db } from 'src/boot/firebase';
 
 const actions: ActionTree<ExampleStateInterface, StateInterface> = {
@@ -31,14 +31,13 @@ const actions: ActionTree<ExampleStateInterface, StateInterface> = {
   },
   logout({ commit, dispatch, state }) {
     signOut(auth);
-    commit('setUserDetails', {});
-
     dispatch('firebaseUpdateUser', {
       userId: state.userDetails.userId,
       updates: {
-        online: true
+        online: false
       }
     });
+    commit('setUserDetails', {});
 
   },
   handleAuthStateChanged({ commit, dispatch, state }) {
@@ -65,6 +64,7 @@ const actions: ActionTree<ExampleStateInterface, StateInterface> = {
           this.$router.push('/');
 
         }).catch((error) => console.error(error));
+
       } else {
 
         dispatch('firebaseUpdateUser', {
@@ -82,7 +82,11 @@ const actions: ActionTree<ExampleStateInterface, StateInterface> = {
   },
   firebaseUpdateUser(_, payload) {
     if (payload.userId) {
-      set(ref(db, `users/${payload.userId}`), payload.updates);
+      update(ref(db, `users/${payload.userId}`), payload.updates)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
     }
   },
   firebaseGetUsers({ commit }) {
@@ -90,6 +94,22 @@ const actions: ActionTree<ExampleStateInterface, StateInterface> = {
       commit('addUser', {
         userId: data.key,
         userDetails: data.val()
+      });
+    });
+
+    onChildChanged(ref(db, 'users'), (data) => {
+      commit('updateUser', {
+        userId: data.key,
+        userDetails: data.val()
+      });
+    });
+  },
+  firebaseGetMessages({ state, commit }, otherUserID) {
+    let userID = state.userDetails.userId;
+    onChildAdded(ref(db, `chats/${userID}/${otherUserID}`), (data) => {
+      commit('addMessages', {
+        messageId: data.key,
+        messageDetails: data.val()
       });
     });
   }

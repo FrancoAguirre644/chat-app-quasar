@@ -1,19 +1,24 @@
 {
     "users": {
-        "USERID1": {
+        "IIEb3rDdz6MjqRhXbroRtA7D1e22": {
+            "name": "Franco",
+            "email": "francoaguirre644@gmail.com",
+            "online": false
+        },
+        "KEfRzISHIEaqntyK9JveAssED483": {
             "name": "Danny",
             "email": "danny@test.com",
-            "online": true
+            "online": false
         },
-        "USERID2": {
+        "U6wTQOjB5qUxhywTYhUr3AQvYG53": {
             "name": "Jim",
             "email": "jim@test.com",
-            "online": true
+            "online": false
         }
     },
     "chats": {
-        "USERID1": {
-            "USERID2": {
+        "IIEb3rDdz6MjqRhXbroRtA7D1e22": {
+            "KEfRzISHIEaqntyK9JveAssED483": {
                 "MESSAGEID1": {
                     "text": "Hi how are you?",
                     "from": "them"
@@ -24,8 +29,8 @@
                 }
             }
         },
-        "USERID2": {
-            "USERID1": {
+        "KEfRzISHIEaqntyK9JveAssED483": {
+            "IIEb3rDdz6MjqRhXbroRtA7D1e22": {
                 "MESSAGEID1": {
                     "text": "Hi how are you?",
                     "from": "them"

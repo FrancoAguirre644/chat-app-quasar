@@ -6,6 +6,6 @@ export interface IUserDetails {
 
 export interface IUser {
   [key: string]: string | IUserDetails | undefined;
-  userId: string;
+  userId?: string;
   userDetails?: IUserDetails;
 }

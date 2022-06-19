@@ -7,7 +7,14 @@ const mutation: MutationTree<ExampleStateInterface> = {
     state.userDetails = payload;
   },
   addUser(state: ExampleStateInterface, payload: IUser) {
-    state.users[payload.userId] = payload.userDetails;
+    state.users[payload.userId ? payload.userId : ''] = payload.userDetails;
+  },
+  updateUser(state: ExampleStateInterface, payload: IUser) {
+    //@ts-ignore
+    Object.assign(state.users[payload.userId], payload.userDetails);
+  },
+  addMessages(state: ExampleStateInterface, payload) {
+    state.messages[payload.messageId ? payload.messageId : ''] = payload.messageDetails;
   }
 };
 
