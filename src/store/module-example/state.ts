@@ -1,9 +1,9 @@
-import { IUser, IUserDetails } from "src/components/models";
+import { IMessage, IUser, IUserDetails } from "src/components/models";
 
 export interface ExampleStateInterface {
   userDetails: IUserDetails;
   users: IUser;
-  messages: any;
+  messages: IMessage;
 }
 
 function state(): ExampleStateInterface {

@@ -1,10 +1,16 @@
 import { IUser } from "src/components/models";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
     computed: {
         otherUserDetails(): IUser {
-            //@ts-ignore
-            return this.$store.state.globalState.users[this.$route.params.id as string];
+
+            if(this.$store.state.globalState.users[this.$route.params.id as string]) {
+                //@ts-ignore
+                return this.$store.state.globalState.users[this.$route.params.id as string];
+            }
+            
+            return {};
         }
     },
-}
+});

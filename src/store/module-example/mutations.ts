@@ -15,6 +15,9 @@ const mutation: MutationTree<ExampleStateInterface> = {
   },
   addMessages(state: ExampleStateInterface, payload) {
     state.messages[payload.messageId ? payload.messageId : ''] = payload.messageDetails;
+  },
+  clearMessages(state: ExampleStateInterface) {
+    state.messages = {};
   }
 };
 
