@@ -1,6 +1,10 @@
-# Chat App (chat-app)
+# Chat App
 
-A Chat App Project
+![Vue](https://img.shields.io/badge/-Vue-42b883?style=for-the-badge&logo=Vue.js&logoColor=FAFAFA)
+![Quasar](https://img.shields.io/badge/-Quasar-007acc?style=for-the-badge&logo=quasar&logoColor=FAFAFA)
+![Firebase](https://img.shields.io/badge/-Firebase-FAFAFA?style=for-the-badge&logo=firebase&logoColor=FFA611)
+
+<hr>
 
 ## Install the dependencies
 ```bash
@@ -19,6 +23,3 @@ quasar dev
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
